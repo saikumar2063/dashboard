@@ -1,29 +1,29 @@
-function Orders() {
+function Expired() {
   return (
     <div>
       <div className="orders-container">
-        <h1 className="orders-heading">Most Ordered Products</h1>
+        <h1 className="orders-heading">Expired Products</h1>
         <p>View All</p>
       </div>
 
       <div>
         <div className="orders-details">
-          <p>Nail Polish</p>
-          <p>Orders:390</p>
+          <p>Fair & Lovely</p>
+          <p>20-02-2024</p>
         </div>
 
         <div className="orders-details">
-          <p>Nail Polish</p>
-          <p>Orders:390</p>
+          <p>Eyecoin Kajal</p>
+          <p>09-03-2024</p>
         </div>
 
         <div className="orders-details">
-          <p>Makeup Set</p>
-          <p>Orders:68</p>
+          <p>Beauty Soap</p>
+          <p>14-05-2024</p>
         </div>
       </div>
     </div>
   );
 }
 
-export default Orders;
+export default Expired;

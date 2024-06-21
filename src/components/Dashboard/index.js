@@ -1,7 +1,7 @@
 import Cards from "../Cards";
-import Orders from "../Orders";
-import Stock from "../Stock";
-import Pending from "../Pending";
+import Sold from "../Sold";
+import Customers from "../Customers";
+import Expired from "../Expired";
 function Dashboard() {
   return (
     <div className="dash-container">
@@ -12,9 +12,9 @@ function Dashboard() {
       </div>
       <Cards />
       <div className="products-dash">
-        <Orders />
-        <Stock />
-        <Pending />
+        <Sold />
+        <Customers />
+        <Expired />
       </div>
     </div>
   );

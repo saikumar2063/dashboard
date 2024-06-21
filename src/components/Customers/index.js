@@ -1,29 +1,29 @@
-function Stock() {
+function Customers() {
   return (
     <div>
       <div className="orders-container">
-        <h1 className="orders-heading">Most Ordered Products</h1>
+        <h1 className="orders-heading">Recent Customers</h1>
         <p>View All</p>
       </div>
 
       <div>
         <div className="orders-details">
-          <p>Nail Polish</p>
-          <p>Orders:390</p>
+          <p>Jai Prakash</p>
+          <p>8877665544</p>
         </div>
 
         <div className="orders-details">
-          <p>Nail Polish</p>
-          <p>Orders:390</p>
+          <p>Swami kiran</p>
+          <p>6677889900</p>
         </div>
 
         <div className="orders-details">
-          <p>Makeup Set</p>
-          <p>Orders:68</p>
+          <p>Harinath</p>
+          <p>9988776655</p>
         </div>
       </div>
     </div>
   );
 }
 
-export default Stock;
+export default Customers;

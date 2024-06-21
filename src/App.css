@@ -1,38 +1,205 @@
-.App {
-  text-align: center;
+.header-container {
+  background-color: white;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+.header-container1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.input {
+  height: 30px;
+  width: 250px;
+  margin-left: 15px;
+  background-color: rgb(229, 221, 221);
+  border: none;
+  border-radius: 5px;
+  margin-right: 50px;
+  margin-right: 250px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header-heading {
+  font-size: 20px;
+  border-right: 3px solid grey;
+  width: 200px;
+  padding-left: 25px;
+}
+.header-select {
+  height: 30px;
+  width: 150px;
+  margin-left: 15px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.image {
+  height: 30px;
+  width: 30px;
+  margin-left: 15px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-container {
+  background-color: rgb(6, 6, 38);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (minwidth<=1050px) {
+  .nav-container {
+    flex-wrap: wrap;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.select {
+  border: none;
+  background-color: rgb(6, 6, 38);
+  font-size: 20px;
+  border-right: 3px solid grey;
+  width: 150px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.dash-container {
+  width: 80vw;
+
+  margin-left: 10vw;
+  background-color: rgb(241, 224, 224);
+  padding: 15px;
+}
+.dash-container1 {
+  background-color: white;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  padding: 2px;
+  padding-left: 10px;
+}
+.products-dash {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media screen and (min-width<=576px) {
+  .products-dash {
+    display: flex;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+.user {
+  font-size: 25px;
+}
+span {
+  font-size: 20px;
+  color: grey;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+}
+
+.card {
+  background-color: rgb(255, 166, 0);
+  width: 180px;
+  height: 150px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 10px;
+  color: white;
+}
+
+.card1 {
+  background-color: green;
+  width: 180px;
+  height: 150px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 10px;
+  color: white;
+}
+
+.card2 {
+  background-color: rgb(6, 6, 38);
+  width: 180px;
+  height: 150px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 10px;
+  color: white;
+}
+
+.card3 {
+  background-color: skyblue;
+  width: 180px;
+  height: 150px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 10px;
+  color: white;
+}
+
+.card4 {
+  background-color: rgb(6, 6, 38);
+  width: 180px;
+  height: 150px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 10px;
+  color: white;
+}
+
+.orders-container {
+  border: 1px solid black;
+  width: 350px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.orders-details {
+  border: 1px solid black;
+  border-top: none;
+  width: 350px;
+  padding: 5px;
+  display: flex;
+
+  justify-content: space-evenly;
+  align-items: center;
+}
+.orders-heading {
+  font-size: 15px;
 }

@@ -1,8 +1,8 @@
-function Pending() {
+function Sold() {
   return (
     <div>
       <div className="orders-container">
-        <h1 className="orders-heading">Most Ordered Products</h1>
+        <h1 className="orders-heading">Recent Sold Products</h1>
         <p>View All</p>
       </div>
 
@@ -13,8 +13,8 @@ function Pending() {
         </div>
 
         <div className="orders-details">
-          <p>Nail Polish</p>
-          <p>Orders:390</p>
+          <p>Eyeliner</p>
+          <p>Orders:72</p>
         </div>
 
         <div className="orders-details">
@@ -26,4 +26,4 @@ function Pending() {
   );
 }
 
-export default Pending;
+export default Sold;
