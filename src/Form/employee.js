@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function Employee() {
   const [employee, setEmployee] = useState({
@@ -14,18 +15,43 @@ function Employee() {
     rfid: "",
     file: "",
     email: "",
+    department: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(employee);
+    const response = await fetch("http://localhost:4000/employeedata", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        emp_id: employee.employee_id,
+        emp_name: employee.employee_name,
+        bio_id: employee.bio_id,
+        mobile_no: employee.mobile_no,
+        doj: employee.doj,
+        dob: employee.dob,
+        designation: employee.designation,
+        gender: employee.gender,
+        branch: employee.branch,
+        rfid: employee.rfid,
+        file: employee.file,
+        email: employee.email,
+        department: employee.department,
+      }),
+    });
+    const result = await response.json();
+
+    if (result.Status) {
+      window.location.reload(); //to reload window on submitting data and retrievs dat if you want data immediately in UI
+    }
   };
+
   return (
     <div className="container">
       <h1 className="fs-4">Add Employee</h1>
       <hr />
-      <div className="row m-4">
+      <form className="row m-4" onSubmit={handleSubmit}>
         <div className="col d-flex flex-column col-12 col-lg-4 mb-1">
           <label className="font-weight-bold mb-1">Emp ID:</label>
           <input
@@ -86,7 +112,7 @@ function Employee() {
           <input
             required
             className="form-control"
-            type="number"
+            type="text"
             placeholder="Mobile"
             name="mobile_no"
             value={employee.mobile_no}
@@ -102,7 +128,6 @@ function Employee() {
         <div className="col d-flex flex-column col-12 col-lg-4 mb-1">
           <label className="font-weight-bold mb-1">DOJ</label>
           <input
-            required
             className="form-control"
             type="date"
             name="doj"
@@ -119,7 +144,6 @@ function Employee() {
         <div className="col d-flex flex-column col-12 col-lg-4 mb-1">
           <label className="font-weight-bold mb-1">DOB</label>
           <input
-            required
             className="form-control"
             type="date"
             name="dob"
@@ -176,6 +200,14 @@ function Employee() {
             className="form-control"
             type="text"
             placeholder="Department"
+            name="department"
+            value={employee.department}
+            onChange={(event) => {
+              setEmployee({
+                ...employee,
+                [event.target.name]: event.target.value,
+              });
+            }}
           />
         </div>
 
@@ -200,7 +232,6 @@ function Employee() {
         <div className="col d-flex flex-column col-12 col-lg-4 mb-1">
           <label className="font-weight-bold mb-1">RFID</label>
           <input
-            required
             className="form-control"
             type="number"
             placeholder="Rfid"
@@ -218,7 +249,6 @@ function Employee() {
         <div className="col d-flex flex-column col-12 col-lg-4 mb-1">
           <label className="font-weight-bold mb-1">Email</label>
           <input
-            required
             className="form-control"
             type="text"
             placeholder="Enter your email"
@@ -251,14 +281,85 @@ function Employee() {
           <button
             type="submit"
             className="bg bg-primary border-0 rounded text-white"
-            onClick={handleSubmit}
           >
             Save
           </button>
         </div>
-      </div>
+      </form>
+      <EmpData />
     </div>
   );
 }
 
 export default Employee;
+
+function EmpData() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:4000/employee").then((response) => {
+      setData(response.data);
+    });
+  }, []);
+  return (
+    <div className="container-fluid ">
+      <div className="row pt-3 ">
+        <div>
+          {data.length > 0 && (
+            <div className="container bg-light">
+              <div className="row">
+                <table className="table table-hover overflow-auto table-responsive bg-light">
+                  <thead>
+                    <tr>
+                      <th className="bg-transparent" scope="col">
+                        S.NO
+                      </th>
+                      <th className="bg-transparent" scope="col">
+                        EMP ID
+                      </th>
+                      <th className="bg-transparent" scope="col">
+                        NAME
+                      </th>
+                      <th className="bg-transparent" scope="col">
+                        BIOMETRIC
+                      </th>
+                      <th className="bg-transparent" scope="col">
+                        MOBILE
+                      </th>
+                      <th className="bg-transparent" scope="col">
+                        DESIGNATION
+                      </th>
+                      <th className="bg-transparent" scope="col">
+                        DEPARTMENT
+                      </th>
+                      <th className="bg-transparent" scope="col">
+                        ACTIONS
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((item, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{item.emp_id}</td>
+                        <td>{item.emp_name}</td>
+                        <td>{item.bio_id}</td>
+                        <td>{item.mobile_no}</td>
+                        {/* <td>{new Date(item.doj).toLocaleDateString()}</td> */}
+                        <td>{item.designation}</td>
+                        <td>{item.department}</td>
+                        <td>
+                          <i className="fa-regular fa-pen-to-square   text-primary "></i>
+                          <i className="fa-solid fa-trash   text-danger mx-5"></i>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

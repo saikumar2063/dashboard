@@ -49,11 +49,12 @@ app.get("/employee", (req, res) => {
       res.send("Error in api");
     } else {
       res.send(result);
+      // console.log("employee", result);
     }
   });
 });
 
-app.post("/employee-data", (req, res) => {
+app.post("/employeedata", (req, res) => {
   const data = req.body;
   // console.log(data);
   con.query("insert into employee set?", data, (err, result, fields) => {
@@ -65,7 +66,7 @@ app.post("/employee-data", (req, res) => {
         Status: true,
       });
     }
-    // res.send(result);
+    console.log(result);
   });
 });
 
