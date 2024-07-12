@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { styled } from "@mui/system";
 // import {
 //   TablePagination,
@@ -6,89 +6,107 @@ import React, { useState } from "react";
 // } from "@mui/base/TablePagination";
 import Sai from "./sai";
 
-import axios from "axios";
+// import axios from "axios";
 
 export default function Pagination() {
   const [data, setData] = useState([]);
   const [hide, setHide] = useState(false);
   const [user, setUser] = useState([data[0]]);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const [page, setPage] = useState(0);
+  // const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleView = (row) => {
     setUser(row);
     setHide((prevState) => !prevState.hide);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (event, newPage) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
 
-  React.useEffect(() => {
-    axios.get("http://localhost:4000/employee").then((response) => {
-      setData(response.data);
-    });
-  }, [data]);
+  // useEffect(() => {
+  //   axios.get("http://localhost:4000/employee").then((response) => {
+  //     setData(response.data);
+  //     console.log(data);
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/employee");
+        console.log(response);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setData(data); // Update state with fetched data
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchUsers(); // Call the async function
+  }, []);
 
   return (
     <React.Fragment>
-      <div sx={{ maxWidth: "100%" }} className="container  ">
-        <table
-          aria-label="custom pagination "
-          className="table border border-secondary mt-5 overflow-auto "
-          // ref={pdfRef}
-          id="tabledata"
-        >
-          <thead>
-            <tr>
-              <td>S.NO</td>
-              <td>EMP.ID</td>
-              <td>NAME</td>
-              <td>BIOMETRIC</td>
-              <td>MOBILE</td>
-              <td>DESIGNATION</td>
-              <td>DEPARTMENT</td>
-              <td>ACtion</td>
-            </tr>
-          </thead>
-          <tbody>
-            {(rowsPerPage > 0
-              ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : data
-            ).map((row, index) => (
-              <tr key={row.id}>
-                <td>{index + 1}</td>
-                <td align="left">{row.emp_id}</td>
-                <td align="left">{row.emp_name} </td>
-                <td align="left">{row.bio_id}</td>
-                <td align="left">{row.mobile_no}</td>
-                <td align="left">{row.designation}</td>
-                <td align="left">{row.department}</td>
-                <td>
-                  <button className="bg bg-transparent border-0">
-                    <i
-                      className="fa-solid fa-eye bg bg-white border-0 rounded mt-2 cursor-pointer"
-                      id="button"
-                      onClick={() => handleView(row)}
-                    ></i>
-                  </button>
-
-                  {/* <button>View</button> */}
-                </td>
+      <div
+        // sx={{ maxWidth: "100%" }}
+        className="container  "
+      >
+        <div className="row">
+          <table
+            aria-label="custom pagination "
+            className="table table-responsive border border-secondary mt-5 overflow-auto col-12 "
+            // ref={pdfRef}
+            id="tabledata"
+          >
+            <thead>
+              <tr>
+                <td>S.NO</td>
+                <td>EMP.ID</td>
+                <td>NAME</td>
+                <td>BIOMETRIC</td>
+                <td>MOBILE</td>
+                <td>DESIGNATION</td>
+                <td>DEPARTMENT</td>
+                <td>Action</td>
               </tr>
-            ))}
-            {/* {emptyRows > 0 && (
+            </thead>
+            <tbody>
+              {data.map((row, index) => (
+                <tr key={row.id}>
+                  <td>{index + 1}</td>
+                  <td align="left">{row.emp_id}</td>
+                  <td align="left">{row.emp_name} </td>
+                  <td align="left">{row.bio_id}</td>
+                  <td align="left">{row.mobile_no}</td>
+                  <td align="left">{row.designation}</td>
+                  <td align="left">{row.department}</td>
+                  <td>
+                    <button className="bg bg-transparent border-0">
+                      <i
+                        className="fa-solid fa-eye bg bg-white border-0 rounded mt-2 cursor-pointer"
+                        id="button"
+                        onClick={() => handleView(row)}
+                      ></i>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+              {/* {emptyRows > 0 && (
               <tr style={{ height: 41 * emptyRows }}>
                 <td colSpan={3} aria-hidden />
               </tr>
             )} */}
-          </tbody>
-          {/* <tfoot id="foot" className="border-0">
+            </tbody>
+            {/* <tfoot id="foot" className="border-0">
             <tr className="border-0">
               <CustomTablePagination
                 className="border-0"
@@ -111,7 +129,8 @@ export default function Pagination() {
               />
             </tr>
           </tfoot> */}
-        </table>
+          </table>
+        </div>
 
         {hide && <Sai userData={user} />}
 

@@ -12,8 +12,8 @@ app.use(cors());
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "chandu@1996",
   database: "product_orders",
+  password: "chandu@1996",
 });
 
 app.get("/formdata", (req, res) => {

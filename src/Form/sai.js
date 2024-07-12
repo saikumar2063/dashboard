@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { createRef, useState } from "react";
 // import axios from "axios";
 import { ReactToPrint } from "react-to-print";
 // import { useReactToPrint } from "react-to-print";
 
 function Sai(props) {
   const [show, setShow] = useState(true);
-  const componentRef = React.createRef();
+  const componentRef = createRef();
   const { userData } = props;
 
   const handleClose = () => {
@@ -31,7 +31,7 @@ function Sai(props) {
   return (
     <div>
       {show && (
-        <div className="container">
+        <div>
           <div className="row">
             <div id="user" ref={componentRef} className="container">
               <div className="row ">
@@ -41,7 +41,7 @@ function Sai(props) {
                   className="mt-3 mb-3"
                   style={{ width: "200px" }}
                 />
-                <table className="table table-striped ">
+                <table className="table table-striped border-collapse">
                   <tbody>
                     <tr>
                       <td className="w-50">Employee Name</td>
@@ -120,10 +120,10 @@ function Sai(props) {
                 trigger={() => {
                   return (
                     <button
-                      className="bg-primary border-0 rounded text-white"
-                      // onClick={() => window.location.reload()}
+                      className=" border-0 rounded text-white"
+                      onClick={() => window.location.reload()}
                     >
-                      Print this out!
+                      <i className="fa-solid fa-print bg bg-white text-dark border-0 rounded mt-2 cursor-pointer"></i>
                     </button>
                   );
                 }}
