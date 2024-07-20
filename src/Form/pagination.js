@@ -40,12 +40,12 @@ export default function Pagination() {
     const fetchUsers = async () => {
       try {
         const response = await fetch("http://localhost:4000/employee");
-        console.log(response);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
         setData(data); // Update state with fetched data
+        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -63,11 +63,11 @@ export default function Pagination() {
         <div className="row">
           <table
             aria-label="custom pagination "
-            className="table table-responsive border border-secondary mt-5 overflow-auto col-12 "
+            className="table table-responsive table-sm border border-secondary mt-5   "
             // ref={pdfRef}
             id="tabledata"
           >
-            <thead>
+            <thead className="table-light">
               <tr>
                 <td>S.NO</td>
                 <td>EMP.ID</td>
