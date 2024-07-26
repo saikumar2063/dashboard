@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-function BillForm() {
-  const customers = [];
+function BillForm({ addToCart }) {
+  // const [cartItem, setCartItem] = useState({});
   const [addBill, setAddBill] = useState({
+    // itemId: productId,
     bill_no: "",
-    name: "",
+    cust_name: "",
     address: "",
     mobile_no: "",
     date: "",
@@ -18,9 +19,32 @@ function BillForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    customers.push(addBill);
-    console.log(customers);
+    // setCartItem(addBill);
+    // addToCart(cartItem);
+    addToCart(addBill);
+    // setAddBill((prevAddBill) => ({
+    //   ...prevAddBill,
+    //   item: e.targetvalue,
+    // }));
+    console.log("from bill form", addBill);
+
+    // console.log(customers);
+    // console.log(productId);
     // console.log(new Date().toLocaleTimeString());
+    setAddBill({
+      // itemId: productId,
+      bill_no: "",
+      cust_name: "",
+      address: "",
+      mobile_no: "",
+      date: "",
+      cashier: "",
+      counter: "",
+      item: "",
+      quantity: "",
+      rate: "",
+      weight: "",
+    });
   };
 
   return (
@@ -37,7 +61,7 @@ function BillForm() {
             className="form-control"
             id="name"
             placeholder="Enter Customer Name "
-            name="name"
+            name="cust_name"
             onChange={(event) => {
               setAddBill({
                 ...addBill,

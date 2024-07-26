@@ -20,9 +20,10 @@ function Partial() {
 
     fetchUsers(); // Call the async function
 
-    // setInterval(() => {
-    //   fetchUsers();
-    // }, 60000); // 60000 milliseconds = 1 minute
+    setInterval(() => {
+      fetchUsers();
+      console.log("Hello");
+    }, 60000); // 60000 milliseconds = 1 minute
   }, []);
 
   return (

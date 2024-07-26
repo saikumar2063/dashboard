@@ -41,6 +41,7 @@ function App() {
     //   <RightSidebar />
     // </div>
     // <BillForm />
+
     <Products />
   );
 }
